@@ -94,10 +94,7 @@ def pregunta_03():
             counter[lista[0]] = int(lista[1])
     varfinal =[(letra, counter[letra]) for letra in counter]
     varfinal.sort(key = lambda x: x[0])
-    print(varfinal)
     return varfinal  
-        
-pregunta_03()
 
 
 def pregunta_04():
