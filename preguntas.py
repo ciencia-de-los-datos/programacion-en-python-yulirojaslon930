@@ -21,8 +21,18 @@ def pregunta_01():
     214
 
     """
-    return
 
+    import csv
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+        data = [line.replace("\n","") for line in data]
+        data = [line.split("\t") for line in data]
+    # print(data)
+    suma = 0
+    for lista in data:
+        suma = int(lista[1]) + suma
+        # print(lista[1], ' => ', suma)
+    return suma
 
 def pregunta_02():
     """
