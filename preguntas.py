@@ -21,8 +21,18 @@ def pregunta_01():
     214
 
     """
-    return
 
+    import csv
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+        data = [line.replace("\n","") for line in data]
+        data = [line.split("\t") for line in data]
+    # print(data)
+    suma = 0
+    for lista in data:
+        suma = int(lista[1]) + suma
+        # print(lista[1], ' => ', suma)
+    return suma
 
 def pregunta_02():
     """
@@ -39,8 +49,21 @@ def pregunta_02():
     ]
 
     """
-    return
+    import csv
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+        data = [line.replace("\n","") for line in data]
+        data = [line.split("\t") for line in data]
 
+    counter= {}
+    for lista in data:
+        if lista[0] in counter:
+            counter[lista[0]] += 1
+        else:
+            counter[lista[0]] = 1
+    varfinal =[(letra, counter[letra]) for letra in counter]
+    varfinal.sort(key = lambda x: x[0])
+    return varfinal
 
 def pregunta_03():
     """
@@ -57,7 +80,21 @@ def pregunta_03():
     ]
 
     """
-    return
+    import csv
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+        data = [line.replace("\n","") for line in data]
+        data = [line.split("\t") for line in data]
+    
+    counter= {}
+    for lista in data:
+        if lista[0] in counter:
+            counter[lista[0]] += int(lista[1])
+        else:
+            counter[lista[0]] = int(lista[1])
+    varfinal =[(letra, counter[letra]) for letra in counter]
+    varfinal.sort(key = lambda x: x[0])
+    return varfinal  
 
 
 def pregunta_04():
