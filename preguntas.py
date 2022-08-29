@@ -145,10 +145,26 @@ def pregunta_05():
     """
     data = upload_data()
     
+    diccionario_min ={}
+    diccionario_max ={}
     
-    return
+    for lista in data:
+        if lista[0] in diccionario_min:
+            if lista[1] < diccionario_min[lista[0]]:
+                diccionario_min[lista[0]] = lista[1] 
+        elif lista[0] not in diccionario_min:
+            diccionario_min[lista[0]] = lista[1] 
+        if lista [0] in diccionario_max:
+            if lista[1] > diccionario_max[lista[0]]:
+                diccionario_max[lista[0]] =lista[1]
+        elif lista[0] not in diccionario_max:
+            diccionario_max[lista[0]] =lista[1]
+    list_result =[]
+    for result in zip(diccionario_max.keys(),diccionario_max.values(),diccionario_min.values()):
+        list_result.append(result)
+        list_result.sort(key = lambda x: x[0])
+    return list_result
 
-pregunta_05()
 
 def pregunta_06():
     """
