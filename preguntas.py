@@ -12,6 +12,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+def upload_data ():
+    import csv
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+        data = [line.replace("\n","") for line in data]
+        data = [line.split("\t") for line in data]
+    return data
+
 
 def pregunta_01():
     """
@@ -21,12 +29,7 @@ def pregunta_01():
     214
 
     """
-
-    import csv
-    with open('data.csv', 'r') as file:
-        data = file.readlines()
-        data = [line.replace("\n","") for line in data]
-        data = [line.split("\t") for line in data]
+    data = upload_data()
     # print(data)
     suma = 0
     for lista in data:
@@ -49,11 +52,7 @@ def pregunta_02():
     ]
 
     """
-    import csv
-    with open('data.csv', 'r') as file:
-        data = file.readlines()
-        data = [line.replace("\n","") for line in data]
-        data = [line.split("\t") for line in data]
+    data = upload_data()
 
     counter= {}
     for lista in data:
@@ -80,11 +79,7 @@ def pregunta_03():
     ]
 
     """
-    import csv
-    with open('data.csv', 'r') as file:
-        data = file.readlines()
-        data = [line.replace("\n","") for line in data]
-        data = [line.split("\t") for line in data]
+    data = upload_data()
     
     counter= {}
     for lista in data:
@@ -119,7 +114,18 @@ def pregunta_04():
     ]
 
     """
-    return
+    data = upload_data()
+    counter = {}
+    for lista in data:
+        fecha = lista[2]
+        mes = fecha.split("-")
+        if mes[1] in counter:
+            counter[mes[1]] += 1
+        else:
+            counter[mes[1]] = 1
+    conteo_final = [(contmes,counter[contmes] ) for contmes in counter]
+    conteo_final.sort(key = lambda x: x[0])
+    return conteo_final
 
 
 def pregunta_05():
@@ -137,7 +143,27 @@ def pregunta_05():
     ]
 
     """
-    return
+    data = upload_data()
+    
+    diccionario_min ={}
+    diccionario_max ={}
+    
+    for lista in data:
+        if lista[0] in diccionario_min:
+            if lista[1] < diccionario_min[lista[0]]:
+                diccionario_min[lista[0]] = lista[1] 
+        elif lista[0] not in diccionario_min:
+            diccionario_min[lista[0]] = lista[1] 
+        if lista [0] in diccionario_max:
+            if lista[1] > diccionario_max[lista[0]]:
+                diccionario_max[lista[0]] =lista[1]
+        elif lista[0] not in diccionario_max:
+            diccionario_max[lista[0]] =lista[1]
+    list_result =[]
+    for result in zip(diccionario_max.keys(),diccionario_max.values(),diccionario_min.values()):
+        list_result.append(result)
+        list_result.sort(key = lambda x: x[0])
+    return list_result
 
 
 def pregunta_06():
