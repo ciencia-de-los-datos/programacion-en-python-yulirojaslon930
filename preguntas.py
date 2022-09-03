@@ -165,7 +165,6 @@ def pregunta_05():
         list_result.sort(key = lambda x: x[0])
     return list_result
 
-
 def pregunta_06():
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
@@ -188,7 +187,32 @@ def pregunta_06():
     ]
 
     """
-    return
+    
+    data = upload_data ()
+    
+    
+    diccionario_min = {}
+    diccionario_max = {}
+    for row in data:
+        data = row[4].split(",")
+        for element in data:
+            key = element[:3]
+            value = int(element[4:])
+            if key in diccionario_min:
+                if value < diccionario_min[key]:
+                    diccionario_min[key] = value
+            elif key not in diccionario_min:
+                diccionario_min[key] = value
+            if key in diccionario_max:
+                if value > diccionario_max[key]:
+                    diccionario_max[key] = value
+            elif key not in diccionario_max:
+                diccionario_max[key] = value           
+    list_result =[]
+    for result in zip(diccionario_min.keys(),list(diccionario_min.values()),list(diccionario_max.values())):
+        list_result.append(result)
+        list_result.sort(key = lambda x: x[0])
+    return list_result
 
 
 def pregunta_07():
@@ -212,8 +236,22 @@ def pregunta_07():
     ]
 
     """
-    return
-
+    data = upload_data ()
+    
+    diccionario ={}
+    
+    
+    for key in data:
+        if int(key[1]) not in diccionario:
+            diccionario[int(key[1])]= [key[0]]
+        else: 
+            list= diccionario[int(key[1])]
+            list.append(key[0])
+            diccionario[int(key[1])] = list
+    
+    list_result = [(key, diccionario[key]) for key in diccionario]
+    list_result.sort(key=lambda x: x[0])
+    return list_result
 
 def pregunta_08():
     """
@@ -237,7 +275,29 @@ def pregunta_08():
     ]
 
     """
-    return
+    data = upload_data ()
+    
+    diccionario ={}
+    
+    for key in data:
+        if int(key[1]) not in diccionario:
+            diccionario[int(key[1])]= [key[0]]
+        else: 
+            list= diccionario[int(key[1])]
+            list.append(key[0])
+            diccionario[int(key[1])] = list
+    
+    for x in diccionario:
+        z = []
+        for y in diccionario[x]:
+            if y not in z:
+                z.append(y) # añade un elemento a la lista
+        z = sorted(z)   # ordenar listas, tuplas, diccionarios 
+        diccionario[x] = z
+    
+    list_result = [(key, diccionario[key]) for key in diccionario]
+    list_result.sort(key=lambda x: x[0])
+    return list_result
 
 
 def pregunta_09():
@@ -260,7 +320,20 @@ def pregunta_09():
     }
 
     """
-    return
+    data = upload_data ()
+    
+    diccionario ={}
+    
+    for lista in data:
+        data = lista[4].split(",")
+        for key in data:
+            variable = key[:3]
+            if variable not in diccionario:
+                diccionario[variable] = 1
+            else: 
+                diccionario[variable] += 1
+    diccionario = dict(sorted(diccionario.items())) # dict conviernene en diccionario una lista de tuplas y .items() en sorted ordena
+    return diccionario
 
 
 def pregunta_10():
