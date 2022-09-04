@@ -12,6 +12,11 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+from doctest import ELLIPSIS_MARKER
+from multiprocessing.sharedctypes import Value
+
+
+
 def upload_data ():
     import csv
     with open('data.csv', 'r') as file:
@@ -379,8 +384,18 @@ def pregunta_11():
 
 
     """
-    return
-
+    data = upload_data ()
+    diccionario = {}
+    
+    for lista in data:
+        data2 = lista[3].split(",")
+        for y in data2:
+            if y not in diccionario:
+                diccionario[y] = int(lista[1])
+            else:
+                diccionario[y] += int(lista[1])
+    diccionario = dict(sorted(diccionario.items()))
+    return diccionario 
 
 def pregunta_12():
     """
@@ -397,4 +412,17 @@ def pregunta_12():
     }
 
     """
-    return
+    
+    data = upload_data ()
+    diccionario = {}
+    
+    for lista in data:
+        data = lista[4].split(",")
+        for key in data:
+            variable = int(key[4:])
+            if lista[0] not in diccionario:
+                diccionario[lista[0]] = variable
+            else:
+                diccionario[lista[0]] += variable
+    diccionario = dict(sorted(diccionario.items()))
+    return diccionario
