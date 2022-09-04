@@ -351,8 +351,6 @@ def pregunta_10():
         ("E", 2, 3),
         ("E", 3, 3),
     ]
-
-
     """
     data = upload_data ()
     list = []
@@ -361,10 +359,7 @@ def pregunta_10():
         z = len(x[4].split(","))
         tupla = (x[0], y,z)
         list.append(tupla)
-    print(list)
-    return 0
-pregunta_10 ()
-
+    return list
 
 def pregunta_11():
     """
